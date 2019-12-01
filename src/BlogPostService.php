@@ -8,6 +8,11 @@ class BlogPostService
 {
     private $hubspotClient;
 
+    /**
+     * BlogPostService constructor.
+     *
+     * @param string $apiKey
+     */
     public function __construct(string $apiKey)
     {
         $this->hubspotClient = Factory::create($apiKey);

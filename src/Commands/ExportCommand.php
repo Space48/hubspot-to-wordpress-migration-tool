@@ -10,6 +10,11 @@ class ExportCommand extends BaseCommand
 {
     protected static $defaultName = 'hubspot:blog:export';
 
+    /**
+     * ExportCommand constructor.
+     *
+     * @param string|null $name
+     */
     public function __construct(string $name = null)
     {
         parent::__construct($name);
@@ -21,6 +26,12 @@ class ExportCommand extends BaseCommand
         $this->setDescription('Exports all blog posts from HubSpot');
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln("Starting blog export");
