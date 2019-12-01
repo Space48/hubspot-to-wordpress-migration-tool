@@ -1,0 +1,22 @@
+{
+  "name": "space48/hubspot-blog-export",
+  "description": "Export all blogposts from HubSpot",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tom Robertshaw",
+      "email": "me@tomrobertshaw.net"
+    }
+  ],
+  "require": {
+    "symfony/console": "^5.0",
+    "hubspot/hubspot-php": "^1.2",
+    "vlucas/phpdotenv": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Space48\\HubSpotBlogExport\\": "src/"
+    }
+  }
+}

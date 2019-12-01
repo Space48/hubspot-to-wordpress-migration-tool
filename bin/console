@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Space48\HubSpotBlogExport\Commands\ExportCommand;
+
+$application = new Application();
+
+$application->add(new ExportCommand());
+
+$application->run();
