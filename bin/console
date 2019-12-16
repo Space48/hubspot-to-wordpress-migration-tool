@@ -4,10 +4,14 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
-use Space48\HubSpotBlogExport\Commands\ExportCommand;
+use Space48\HubSpotWordpressBlogMigration\Commands\DownloadMediaCommand;
+use Space48\HubSpotWordpressBlogMigration\Commands\ExportCommand;
+use Space48\HubSpotWordpressBlogMigration\Commands\ImportCommand;
 
 $application = new Application();
 
+$application->add(new DownloadMediaCommand());
 $application->add(new ExportCommand());
+$application->add(new ImportCommand());
 
 $application->run();

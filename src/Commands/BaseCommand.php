@@ -1,6 +1,6 @@
 <?php
 
-namespace Space48\HubSpotBlogExport\Commands;
+namespace Space48\HubSpotWordpressBlogMigration\Commands;
 
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Command\Command;

@@ -1,6 +1,6 @@
 {
-  "name": "space48/hubspot-blog-export",
-  "description": "Export all blogposts from HubSpot",
+  "name": "space48/hubspot-blog-to-wordpress",
+  "description": "Hubspot to Wordpress Blog Migration Tool",
   "type": "project",
   "license": "MIT",
   "authors": [
@@ -13,11 +13,12 @@
     "symfony/console": "^5.0",
     "hubspot/hubspot-php": "^1.2",
     "vlucas/phpdotenv": "^4.0",
-    "violet/streaming-json-encoder": "^1.1"
+    "violet/streaming-json-encoder": "^1.1",
+    "halaxa/json-machine": "^0.3.2"
   },
   "autoload": {
     "psr-4": {
-      "Space48\\HubSpotBlogExport\\": "src/"
+      "Space48\\HubSpotWordpressBlogMigration\\": "src/"
     }
   }
 }
