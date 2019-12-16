@@ -1,3 +1,5 @@
 .env
 vendor/
+downloaded-images/
 blogs.json
+blogs_with_updated_image_paths.json
