@@ -1,8 +1,8 @@
 <?php
 
-namespace Space48\HubSpotBlogExport\Commands;
+namespace Space48\HubSpotWordpressBlogMigration\Commands;
 
-use Space48\HubSpotBlogExport\BlogPostService;
+use Space48\HubSpotWordpressBlogMigration\HubSpotBlogPostService;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -36,10 +36,10 @@ class ExportCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $blogPostService = new BlogPostService($this->getApiKey($input));
+        $blogPostService = new HubSpotBlogPostService($this->getApiKey($input));
 
         try {
-            $pageGenerator = $blogPostService->getPage();
+            $blogPosts = $blogPostService->getBlogPosts();
         } catch (\Exception $e) {
             $io = new SymfonyStyle($input, $output);
             $io->getErrorStyle()->error("<error>" . $e->getMessage() . "</error>");
@@ -47,11 +47,12 @@ class ExportCommand extends BaseCommand
         }
 
         $jsonEncoder = new StreamJsonEncoder(
-            $pageGenerator,
+            $blogPosts,
             function($json) use ($output) {
                 $output->write($json);
             }
         );
+        $jsonEncoder->setOptions(JSON_PRETTY_PRINT);
         $jsonEncoder->encode();
 
         return 0;
