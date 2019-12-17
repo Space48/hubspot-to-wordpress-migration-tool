@@ -16,7 +16,6 @@ use Violet\StreamingJsonEncoder\StreamJsonEncoder;
 class DownloadMediaCommand extends BaseCommand
 {
     const FILENAME_ARGUMENT = 'filename';
-    const PATH_OPTION = 'path';
 
     protected static $defaultName = 'hubspot:media:download';
 
@@ -24,7 +23,6 @@ class DownloadMediaCommand extends BaseCommand
     {
         parent::configure();
         $this->addArgument(self::FILENAME_ARGUMENT, InputArgument::REQUIRED, 'JSON file');
-        $this->addOption(self::PATH_OPTION, 'p', InputOption::VALUE_REQUIRED, 'Download folder for images');
         $this->setDescription('Find and download media and update media paths in json');
     }
 
@@ -41,8 +39,7 @@ class DownloadMediaCommand extends BaseCommand
         $imageUrls = $this->getImageUrlsFromBlogPosts($filename);
 
         // Download images
-        $path = $input->getOption(self::PATH_OPTION) ?? 'downloaded-images/';
-        $path = getcwd() . '/' . $path;
+        $path = getcwd() . '/downloaded-images/';
         $this->downloadImages($imageUrls, $path);
 
         // Update original image URL paths
