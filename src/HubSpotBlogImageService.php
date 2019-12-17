@@ -28,14 +28,16 @@ class HubSpotBlogImageService
     /**
      * HubSpotBlogImageService constructor.
      *
-     * @param array $imageFields - Array of blog post fields to search for images in.
+     * @param array|null         $imageFields
+     * @param array|null         $blogAuthorImageFields
+     * @param ImageSearcher|null $imageSearcher
      */
     public function __construct(
         array $imageFields = null,
         array $blogAuthorImageFields = null,
         ImageSearcher $imageSearcher = null
     ) {
-        $this->imageFields = $imageFields ?? ['post_body'];
+        $this->imageFields = $imageFields ?? ['featured_image', 'post_body'];
         $this->blogAuthorImageFields = $blogAuthorImageFields ?? ['avatar'];
         $this->imageSearcher = $imageSearcher ?? new ImageSearcher();
     }
