@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Violet\StreamingJsonEncoder\StreamJsonEncoder;
 
-class ExportCommand extends HubspotCommand
+class ExportBlogCommand extends HubspotCommand
 {
     protected static $defaultName = 'hubspot:blog:export';
 
@@ -48,7 +48,7 @@ class ExportCommand extends HubspotCommand
 
         $jsonEncoder = new StreamJsonEncoder(
             $blogPosts,
-            function($json) use ($output) {
+            function ($json) use ($output) {
                 $output->write($json);
             }
         );

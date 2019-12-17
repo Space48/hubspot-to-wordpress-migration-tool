@@ -14,11 +14,24 @@
     "hubspot/hubspot-php": "^1.2",
     "vlucas/phpdotenv": "^4.0",
     "violet/streaming-json-encoder": "^1.1",
-    "halaxa/json-machine": "^0.3.2"
+    "halaxa/json-machine": "^0.3.2",
+    "vnn/wordpress-rest-api-client": "^1.2",
+    "guzzlehttp/guzzle": "^6.5",
+    "cweagans/composer-patches": "^1.6"
   },
   "autoload": {
     "psr-4": {
       "Space48\\HubSpotWordpressBlogMigration\\": "src/"
+    }
+  },
+  "config": {
+    "preferred-install": "source"
+  },
+  "extra": {
+    "patches": {
+      "vnn/wordpress-rest-api-client": {
+        "Add support for media upload": "patches/add-media-upload-functionality.patch"
+      }
     }
   }
 }

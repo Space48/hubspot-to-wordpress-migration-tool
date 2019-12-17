@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "773586c36dbd164ca30383b8bcb093b3",
+    "content-hash": "c399776ceea6706937cb1c1c922ad492",
     "packages": [
+        {
+            "name": "cweagans/composer-patches",
+            "version": "1.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweagans/composer-patches.git",
+                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
+                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0",
+                "phpunit/phpunit": "~4.6"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "cweagans\\Composer\\Patches"
+            },
+            "autoload": {
+                "psr-4": {
+                    "cweagans\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Eagans",
+                    "email": "me@cweagans.net"
+                }
+            ],
+            "description": "Provides a way to patch Composer packages.",
+            "time": "2019-08-29T20:11:49+00:00"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "6.5.0",
@@ -292,16 +336,16 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "100a25207566930efd926cf205542946aa692e01"
+                "reference": "77f7c4d2e65413aff5b5a8cc8b3caf7a28d81959"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/100a25207566930efd926cf205542946aa692e01",
-                "reference": "100a25207566930efd926cf205542946aa692e01",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/77f7c4d2e65413aff5b5a8cc8b3caf7a28d81959",
+                "reference": "77f7c4d2e65413aff5b5a8cc8b3caf7a28d81959",
                 "shasum": ""
             },
             "require": {
@@ -343,7 +387,7 @@
                 "php",
                 "type"
             ],
-            "time": "2019-12-14T13:46:39+00:00"
+            "time": "2019-12-15T19:35:24+00:00"
         },
         {
             "name": "psr/container",
@@ -900,6 +944,48 @@
                 "environment"
             ],
             "time": "2019-12-14T13:59:29+00:00"
+        },
+        {
+            "name": "vnn/wordpress-rest-api-client",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varsitynewsnetwork/wordpress-rest-api-client.git",
+                "reference": "504fc29ad71f268b321cd87a8de855838f4e8cbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varsitynewsnetwork/wordpress-rest-api-client/zipball/504fc29ad71f268b321cd87a8de855838f4e8cbe",
+                "reference": "504fc29ad71f268b321cd87a8de855838f4e8cbe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5.6, <= 8.0",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.2",
+                "peridot-php/leo": "^1.5",
+                "peridot-php/peridot": "^1.18",
+                "peridot-php/peridot-prophecy-plugin": "^1.1",
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "Add support for media upload": "patches/add-media-upload-functionality.patch"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vnn\\WpApiClient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2017-04-06T19:41:40+00:00"
         }
     ],
     "packages-dev": [],
