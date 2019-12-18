@@ -145,7 +145,7 @@ class HubSpotToWordpressService
         // Search for tag
         $wordpressTags = $this->client->getTags(['search' => $tag]);
         foreach ($wordpressTags as $wordpressTag) {
-            if ($wordpressTag['name'] == $tag) {
+            if (strtolower($wordpressTag['name']) == strtolower($tag)) {
                 return $wordpressTag['id'];
             }
         }
