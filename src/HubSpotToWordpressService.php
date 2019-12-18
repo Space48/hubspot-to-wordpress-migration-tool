@@ -82,6 +82,16 @@ class HubSpotToWordpressService
      */
     private function getAuthor(array $blogAuthor, string $defaultAuthor)
     {
+        // Use default author if blog author email is empty
+        if (empty($blogAuthor['email'])) {
+            $defaultAuthor = $this->client->getUsers(['search' => $defaultAuthor]);
+            if (count($defaultAuthor) == 0) {
+                throw new \Exception('Default author not found');
+            }
+            $defaultAuthor = array_pop($defaultAuthor);
+            return $defaultAuthor['id'];
+        }
+
         // Search for author
         $authors = $this->client->getUsers(['search' => $blogAuthor['full_name']]);
         foreach ($authors as $author) {
@@ -89,10 +99,6 @@ class HubSpotToWordpressService
                 return $author['id'];
             }
 
-            // Override HubSpot user if 'admin' is the user.
-            if (empty($blogAuthor['email']) && $author['name'] == $defaultAuthor) {
-                return $author['id'];
-            }
         }
 
         // Not found, create author
