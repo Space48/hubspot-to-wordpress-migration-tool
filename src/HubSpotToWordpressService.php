@@ -37,7 +37,8 @@ class HubSpotToWordpressService
      */
     public function createBlogPost(array $blogPost, string $defaultAuthor)
     {
-        $posts = $this->client->getPosts();
+        // Check if post already exists.
+        $posts = $this->client->getPosts(['search' => $blogPost['name']]);
         foreach ($posts as $post) {
             if ($post['slug'] == $this->getSlug($blogPost['slug'])) {
                 // Skip if post already exists.
@@ -58,7 +59,7 @@ class HubSpotToWordpressService
 
         // Create blog post.
         $this->client->createPost(
-            \DateTimeImmutabxle::createFromFormat('U', substr($blogPost['publish_date'], 0, -3)),
+            \DateTimeImmutable::createFromFormat('U', substr($blogPost['publish_date'], 0, -3)),
             $blogPost['name'],
             $blogPost['post_body'],
             $authorID,
@@ -72,7 +73,7 @@ class HubSpotToWordpressService
     /**
      * Get Author for blog post, create author if they don't exist
      *
-     * @param array  $blogAuthor - HubSpot Author
+     * @param array  $blogAuthor    - HubSpot Author
      * @param string $defaultAuthor - Default author name
      *
      * @return int
@@ -82,7 +83,7 @@ class HubSpotToWordpressService
     private function getAuthor(array $blogAuthor, string $defaultAuthor)
     {
         // Search for author
-        $authors = $this->client->getUsers();
+        $authors = $this->client->getUsers(['search' => $blogAuthor['full_name']]);
         foreach ($authors as $author) {
             if ($author['name'] == $blogAuthor['full_name']) {
                 return $author['id'];
@@ -136,7 +137,7 @@ class HubSpotToWordpressService
     private function getTag($tag)
     {
         // Search for tag
-        $wordpressTags = $this->client->getTags();
+        $wordpressTags = $this->client->getTags(['search' => $tag]);
         foreach ($wordpressTags as $wordpressTag) {
             if ($wordpressTag['name'] == $tag) {
                 return $wordpressTag['id'];
@@ -160,7 +161,7 @@ class HubSpotToWordpressService
     private function getCategory(array $parentBlog)
     {
         // Search for category
-        $categories = $this->client->getCategories();
+        $categories = $this->client->getCategories(['search' => $parentBlog['name']]);
         foreach ($categories as $category) {
             if ($category['name'] == $parentBlog['name']) {
                 return $category['id'];
@@ -183,7 +184,7 @@ class HubSpotToWordpressService
     private function getMedia(string $path)
     {
         // Search for media
-        $media = $this->client->getMedia();
+        $media = $this->client->getMedia(['search' => basename('path')]);
         foreach ($media as $medium) {
             // If filenames match, assume the media is the same
             if ($medium['media_details']['sizes']['full']['file'] == basename($path)) {

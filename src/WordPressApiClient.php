@@ -15,6 +15,11 @@ class WordPressApiClient
     private $client;
 
     /**
+     * @var array
+     */
+    private $defaultParams;
+
+    /**
      * WordPressApiClient constructor.
      *
      * @param string $apiUrl
@@ -24,60 +29,77 @@ class WordPressApiClient
     public function __construct(
         string $apiUrl,
         string $apiUser,
-        string $apiPassword
+        string $apiPassword,
+        array $defaultParams = null
     ) {
         $this->client = new WpClient(new GuzzleAdapter(new Client()), $apiUrl);
         $this->client->setCredentials(new WpBasicAuth($apiUser, $apiPassword));
+        $this->defaultParams = $defaultParams ?? ['per_page' => 100];
     }
 
     /**
      * Get blog posts
      *
+     * @param $params
+     *
      * @return array
      */
-    public function getPosts()
+    public function getPosts(array $params = [])
     {
-        return $this->client->posts()->get(null, ['per_page' => 100]);
+        $params = array_merge($this->defaultParams, $params);
+        return $this->client->posts()->get(null, $params);
     }
 
     /**
      * Get authors/users
      *
+     * @param array $params
+     *
      * @return array
      */
-    public function getUsers()
+    public function getUsers(array $params = [])
     {
-        return $this->client->users()->get(null, ['per_page' => 100]);
+        $params = array_merge($this->defaultParams, $params);
+        return $this->client->users()->get(null, $params);
     }
 
     /**
      * Get Tags
      *
+     * @param array $params
+     *
      * @return array
      */
-    public function getTags()
+    public function getTags(array $params = [])
     {
-        return $this->client->tags()->get(null, ['per_page' => 100]);
+        $params = array_merge($this->defaultParams, $params);
+        return $this->client->tags()->get(null, $params);
     }
 
     /**
      * Get Categories
      *
+     * @param array $params
+     *
      * @return array
      */
-    public function getCategories()
+    public function getCategories(array $params = [])
     {
-        return $this->client->categories()->get(null, ['per_page' => 100]);
+        $params = array_merge($this->defaultParams, $params);
+        return $this->client->categories()->get(null, $params);
     }
 
     /**
      * Get Media
      *
+     * @param array $params
+     *
      * @return array
      */
-    public function getMedia()
+    public function getMedia(array $params = [])
     {
-        return $this->client->media()->get(null, ['per_page' => 100]);
+        $params = array_merge($this->defaultParams, $params);
+        return $this->client->media()->get(null, $params);
     }
 
     /**
