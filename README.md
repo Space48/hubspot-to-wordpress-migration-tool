@@ -1,17 +1,12 @@
 # HubSpot to Wordpress Blog Migration Tool
 
-This tool allows you to export all pages from your HubSpot blog into a JSON file, then import into Wordpress.
-
-## Things to note
-
-- There are two blogs in Space 48 HubSpot "Blog" and "Downloads" so we may need to
-take this into consideration when importing into wordpress.    
+This tool allows you to export all pages from your HubSpot blog into a JSON file, download all media, and then import into Wordpress.    
 
 ## Setup
 
 - `composer install`
 - Copy `.env.example` to `.env` and add your API key found in [HubSpot Admin](https://app.hubspot.com/api-key/2805713).
- Wordpress API credentials are the same as admin credentials, or use [Application Passwords](https://wordpress.org/plugins/application-passwords/).
+ Wordpress API requires Basic Authentication, which can be achieved using the [Application Passwords](https://wordpress.org/plugins/application-passwords/) plugin.
 
 ## Usage
 
@@ -32,16 +27,14 @@ On Server
 
 Locally:
 
-    rsync -avz downloaded-images/ space48@space48.ssh.wpengine.net:/home/wpe-user/sites/space48/wp-content/uploads/migrated/
+    rsync -avz downloaded-images/ user@server:/var/www/html/wp-content/uploads/migrated/
 
-Use WordPress API to create blog posts 
+Use WordPress API to create blog posts, specifying a default author name.
     
-    php bin/console wordpress:blog:import blogs_with_updated_image_paths.json
-    
-(manully copy images in downloaded-images folder into wp-content/uploads/migrated/ of your install)
-
+    php bin/console -vvv wordpress:blog:import blogs_with_updated_image_paths.json "Default Author Name"
 
 ## Assumptions Made
 
 - All blog posts are imported as status "published" as we deleted anything that wasn't already published in HubSpot before starting.
 - Pretty permalinks have been enabled, see here https://developer.wordpress.org/rest-api/#routes-endpoints (otherwise wp-json URL does not work)
+- Any pre-existing WordPress users have their full name set as "Display name publicly as"
