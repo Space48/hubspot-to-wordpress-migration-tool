@@ -5,7 +5,7 @@ This tool allows you to export all pages from your HubSpot blog into a JSON file
 ## Setup
 
 - `composer install`
-- Copy `.env.example` to `.env` and add your API key found in [HubSpot Admin](https://app.hubspot.com/api-key/2805713).
+- Copy `.env.example` to `.env` and add your [HubSpot API key](https://knowledge.hubspot.com/integrations/how-do-i-get-my-hubspot-api-key?KBOpenTab).
  Wordpress API requires Basic Authentication, which can be achieved using the [Application Passwords](https://wordpress.org/plugins/application-passwords/) plugin.
 
 ## Usage
